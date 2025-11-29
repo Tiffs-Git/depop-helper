@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depop Auto Relist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 350px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-size: 13px;
+            flex: 1;
+        }
+
+        input[type="number"] {
+            width: 80px;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        select {
+            flex: 1;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #38a169;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            margin-top: 8px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .warning {
+            background: rgba(237, 137, 54, 0.2);
+            border-left: 3px solid #ed8936;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .info {
+            font-size: 11px;
+            opacity: 0.8;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .status {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔄 Depop Listing Refresher</h1>
+
+    <div class="section">
+        <div class="section-title">About</div>
+        <p style="font-size: 13px; line-height: 1.6;">
+            This extension automatically refreshes your Depop listings by updating them, which pushes them to the top of search results.
+        </p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">How to Use</div>
+        <ol style="font-size: 12px; line-height: 1.8; padding-left: 20px;">
+            <li>Go to your Depop selling page</li>
+            <li>Look for the draggable control panel in the bottom-right corner</li>
+            <li>Click "Start Refreshing" to begin</li>
+            <li>Wait for it to complete</li>
+        </ol>
+        <div class="info">
+            💡 The extension refreshes listings by updating them via the API - no deletion involved!
+        </div>
+    </div>
+
+    <button class="btn-secondary" id="openDashboard">Open Depop Selling Page</button>
+
+    <div class="status" id="status">
+        Extension is active. Visit your selling page to use it.
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+    "manifest_version": 3,
+    "name": "Depop Auto Relist",
+    "version": "1.0",
+    "description": "Automatically relist your Depop items by cloning and recreating them.",
+    "permissions": [
+        "scripting",
+        "activeTab",
+        "storage"
+    ],
+    "host_permissions": [
+        "https://www.depop.com/*",
+        "https://webapi.depop.com/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "128": "icon.png"
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.depop.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "config.js",
+                "inject.js"
+            ],
+            "matches": [
+                "https://www.depop.com/*"
+            ]
+        }
+    ],
+    "icons": {
+        "128": "icon.png"
+    }
+}
