@@ -8,8 +8,8 @@ window.CONFIG = {
     // 2. Open DevTools (F12)
     // 3. Go to Application tab → Cookies → depop.com
     // 4. Copy the value of 'access_token'
-    DEPOP_TOKEN: 'YOUR_DEPOP_TOKEN_HERE',
+    DEPOP_TOKEN: 'da0def05e094d133febccc58eb9f46d91d4ea896',
 
     // Your Depop username (used as fallback if can't detect from URL)
-    USERNAME: 'your_username_here'
+    USERNAME: 'tiffcass83'
 };

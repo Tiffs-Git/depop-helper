@@ -1,12 +1,12 @@
 (function () {
     // Load configuration from window.CONFIG (set by config.js) or use defaults
     const CONFIG = window.CONFIG || {
-        DEPOP_TOKEN: 'YOUR_DEPOP_TOKEN_HERE', // Replace with your token
-        USERNAME: 'your_username_here' // Replace with your username
+        DEPOP_TOKEN: 'da0def05e094d133febccc58eb9f46d91d4ea896', // Replace with your token
+        USERNAME: 'tiffcass83' // Replace with your username
     };
 
     // Validate configuration
-    if (CONFIG.DEPOP_TOKEN === 'YOUR_DEPOP_TOKEN_HERE') {
+    if (CONFIG.DEPOP_TOKEN === 'depop_tokens') {
         console.error('❌ Please configure your Depop token in inject.js or config.js');
         alert('Depop Refresher: Please add your Depop token. See instructions in inject.js');
         return;
@@ -322,7 +322,7 @@
                 attributes: productData.attributes || {},
                 isKids: productData.is_kids || productData.isKids || false,
                 colour: Array.isArray(productData.colour) ? productData.colour : (productData.colour ? [productData.colour] : ['black']),
-                priceCurrency: productData.pricing?.currency_name || productData.priceCurrency || 'GBP',
+                priceCurrency: productData.pricing?.currency_name || productData.priceCurrency || 'USD',
                 geoLat: productData.geo_lat || productData.geoLat || 54.2379333607472,
                 geoLng: productData.geo_lng || productData.geoLng || -2.36966957036279,
                 boost: { status: 'inactive' },
