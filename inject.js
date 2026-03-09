@@ -107,6 +107,7 @@
     const delayLabel = document.createElement("label");
     delayLabel.textContent = "Delay (sec):";
     delayLabel.style.fontSize = "12px";
+    delayLabel.style.color = "black";
     const delayInput = document.createElement("input");
     delayInput.type = "number";
     delayInput.min = "1";
@@ -118,6 +119,7 @@
     border: none;
     border-radius: 4px;
     font-size: 12px;
+    color: black;
   `;
     delayContainer.appendChild(delayLabel);
     delayContainer.appendChild(delayInput);
@@ -311,8 +313,8 @@
                 quantity: productData.quantity || null,
                 nationalShippingCost: String(productData.national_shipping_cost || productData.nationalShippingCost || productData.national_shipping_price || productData.pricing?.national_shipping_cost || 0),
                 shippingMethods: shippingMethods,
-                address: productData.address || 'United Kingdom',
-                countryCode: productData.country_code || productData.countryCode || 'GB',
+                address: productData.address || 'United States of America',
+                countryCode: productData.country_code || productData.countryCode || 'US',
                 priceAmount: String(productData.price_amount || productData.priceAmount || productData.price || productData.pricing?.price_amount || 1),
                 pictureIds: pictureIds,
                 condition: productData.condition || 'used_like_new',
