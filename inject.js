@@ -274,7 +274,7 @@
     }
 
     // Update a product (this should refresh its position)
-    async function updateProduct(productId, productSlug) {
+    async function updateProduct(productId, productSlug) {    
         try {
             // First, get the full product details
             const detailsUrl = `https://webapi.depop.com/presentation/api/v1/products/by-slug/${productSlug}/edit-listing/`;
@@ -308,29 +308,29 @@
 
             const updatePayload = {
                 variants: productData.variants || { 1: 1 },
-                variantSetId: productData.variant_set_id || productData.variantSetId || 52,
-                productType: productData.product_type || productData.productType || 'tshirts',
-                quantity: productData.quantity || null,
-                nationalShippingCost: String(productData.national_shipping_cost || productData.nationalShippingCost || productData.national_shipping_price || productData.pricing?.national_shipping_cost || 0),
-                shippingMethods: shippingMethods,
-                address: productData.address || 'United States of America',
-                countryCode: productData.country_code || productData.countryCode || 'US',
-                priceAmount: String(productData.price_amount || productData.priceAmount || productData.price || productData.pricing?.price_amount || 1),
-                pictureIds: pictureIds,
-                condition: productData.condition || 'used_like_new',
+                variantSetId: productData.variant_set_id || productData.variantSetId,
+                productType: productData.product_type || productData.productType,
+                quantity: productData.quantity ?? null,
+                nationalShippingCost: productData.national_shipping_cost ?? productData.nationalShippingCost ?? productData.national_shipping_price ?? productData.pricing?.national_shipping_cost,                shippingMethods: shippingMethods,
+                address: productData.address,
+                countryCode: productData.country_code || productData.countryCode,
+                priceAmount: productData.price_amount ?? productData.priceAmount ?? productData.pricing?.price_amount,                pictureIds: pictureIds,
+                condition: productData.condition,
                 description: productData.description || '',
-                gender: productData.gender || 'unisex',
-                group: productData.group || 'tops',
+                gender: productData.gender,
+                group: productData.group,
                 attributes: productData.attributes || {},
-                isKids: productData.is_kids || productData.isKids || false,
-                colour: Array.isArray(productData.colour) ? productData.colour : (productData.colour ? [productData.colour] : ['black']),
+                isKids: productData.is_kids ?? productData.isKids ?? false,
+                colour: Array.isArray(productData.colour) ? productData.colour : (productData.colour ? [productData.colour] : []),
                 priceCurrency: productData.pricing?.currency_name || productData.priceCurrency || 'USD',
-                geoLat: productData.geo_lat || productData.geoLat || 54.2379333607472,
-                geoLng: productData.geo_lng || productData.geoLng || -2.36966957036279,
                 boost: { status: 'inactive' },
-                shippingAddress: productData.shipping_address || productData.shippingAddress || 36800900
+                shippingAddress: productData.shipping_address || productData.shippingAddress
             };
-
+            Object.keys(updatePayload).forEach((key) => {
+                if (updatePayload[key] === undefined || updatePayload[key] === null) {
+                    delete updatePayload[key];
+                }
+            });
             if (productData.brand_name && productData.brand_name.trim()) {
                 updatePayload.brand = productData.brand_name.toLowerCase();
             } else if (productData.brand && productData.brand.trim()) {
@@ -350,11 +350,10 @@
                 body: JSON.stringify(updatePayload)
             });
 
-            if (updateResponse.ok) {
-                return true;
-            } else {
+            if (!updateResponse.ok) {
                 const errorText = await updateResponse.text();
-                throw new Error(`Update failed: ${updateResponse.status}`);
+                console.error("Depop update failed:", updateResponse.status, errorText);
+                throw new Error(`Update failed: ${updateResponse.status} - ${errorText}`);
             }
 
         } catch (e) {
